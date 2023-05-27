@@ -9,16 +9,26 @@ import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.Table;
 
+import lombok.AllArgsConstructor;
+import lombok.Data;
+import lombok.Getter;
+import lombok.NoArgsConstructor;
+import lombok.Setter;
 
-@Entity
-@Table(name="student_info")
+@Data
+@NoArgsConstructor
+@AllArgsConstructor
+@Getter @Setter
+@Entity //  an entity class represents a persistent data entity used to map to a database table.
+@Table(name="student_info") // table name 
 public class Student implements Serializable {
 	
-	@Id
-	@GeneratedValue(strategy = GenerationType.IDENTITY)
+	@Id// used for primary key
+	@GeneratedValue(strategy = GenerationType.IDENTITY) // automatically generate the id from 1
 	private Integer id;
 	
-	@Column(name="Student_Name")
+	
+	@Column(name="Student_Name") //@Column annotation we can provide the name for the table columns
 	private String name;
 	
 	@Column(name="S_age")
@@ -26,54 +36,25 @@ public class Student implements Serializable {
 	
 	@Column(name="Total_marks")
 	private Integer totalmarks;
-
-	public Student() {
+	
+	
+	public boolean update(Student updatedStudentDetails) {
 		
+		if (updatedStudentDetails.getName() != null) {
+			name = updatedStudentDetails.getName();
+		}
+		
+		if(updatedStudentDetails.getAge() !=null)
+		{
+			age=updatedStudentDetails.getAge();
+		}
+		
+		if (updatedStudentDetails.getTotalmarks() !=null)
+		{
+			totalmarks=updatedStudentDetails.getTotalmarks();
+		}
+		return true;
 	}
 
-	public Student(String name, Integer age, Integer totalmarks) {
-		super();
-		this.name = name;
-		this.age = age;
-		this.totalmarks = totalmarks;
-	}
-
-	public Integer getId() {
-		return id;
-	}
-
-	public void setId(Integer id) {
-		this.id = id;
-	}
-
-	public String getName() {
-		return name;
-	}
-
-	public void setName(String name) {
-		this.name = name;
-	}
-
-	public Integer getAge() {
-		return age;
-	}
-
-	public void setAge(Integer age) {
-		this.age = age;
-	}
-
-	public Integer getTotalmarks() {
-		return totalmarks;
-	}
-
-	public void setTotalmarks(Integer totalmarks) {
-		this.totalmarks = totalmarks;
-	}
 	
-	
-	
-	
-	
-	
-
 }
