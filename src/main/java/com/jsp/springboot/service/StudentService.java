@@ -11,16 +11,12 @@ import org.springframework.data.domain.PageRequest;
 import org.springframework.data.domain.Sort;
 import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Service;
-import org.springframework.web.bind.annotation.PathVariable;
-import org.springframework.web.bind.annotation.RequestBody;
-
 import com.jsp.springboot.entity.Student;
 import com.jsp.springboot.entity.StudentSpecification;
 import com.jsp.springboot.exception.ResourceNotFoundException;
 import com.jsp.springboot.repository.StudentRepository;
 
 import lombok.AllArgsConstructor;
-import lombok.NoArgsConstructor;
 
 /**
  * This class implements the business logic of the StudentsInfoApplication. 
@@ -31,11 +27,17 @@ public class StudentService {
 	
 	@Autowired
 	private final StudentRepository studentRepository;
-    
+	
+    /**
+     * This method is responsible saves the details of a Student object using a studentRepository*/
     public Student saveDetails(Student student) {
 		return studentRepository.save(student);
 	}
     
+    
+    /**
+     * This method used to update existing student details
+     * */
     public ResponseEntity<Student> updateStudent(Integer id, Student updatedStudentDetails) {
 		
 		Student studentDetails = studentRepository.findById(id)
@@ -46,6 +48,9 @@ public class StudentService {
 	}
     
     
+    /**
+     * This method used to delete student details
+     * */
     public ResponseEntity <Map <String, Boolean>> deleteStudent(Integer id)
 	{
 		Student stu = studentRepository.findById(id)
@@ -58,6 +63,12 @@ public class StudentService {
 		return ResponseEntity.ok(response);
 		
 	}
+    
+    
+    /**
+     * This method called getStudentList that retrieves a list of Student objects based on the specified query filters, 
+     * pagination parameters, and sorting criteria
+     * */
     public Page<Student> getStudentList(Map<String, Object> queryFilters, int pageNumber, int pageSize, String sortBy) {
         Pageable pageable = PageRequest.of(pageNumber, pageSize, Sort.by(sortBy));
 
@@ -65,10 +76,10 @@ public class StudentService {
     	
     }
 
-    public Page<Student> getAllStudents(int pageNumber, int pageSize, String sortBy) {
+    /*public Page<Student> getAllStudents(int pageNumber, int pageSize, String sortBy) {
         Pageable pageable = PageRequest.of(pageNumber, pageSize, Sort.by(sortBy));
         return studentRepository.findAll(pageable);
-    }
+    }*/
     
     
 

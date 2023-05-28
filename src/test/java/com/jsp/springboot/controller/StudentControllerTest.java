@@ -18,6 +18,10 @@ import org.mockito.Mock;
 import org.mockito.Mockito;
 import org.mockito.MockitoAnnotations;
 
+/**
+ * This class is responsible for Writing Unit Test cases for Controller class
+ * */
+
 @SpringBootTest
 public class StudentControllerTest {
 	
@@ -50,7 +54,6 @@ public class StudentControllerTest {
 	public void GIVEN_valid_student_details_WHEN_updateStudent_THEN_update_studentDetails()
 	{
 		//Given
-		
 		Student student = new Student();
 		student.setName("testdata");
 		student.setAge(22);
@@ -60,11 +63,9 @@ public class StudentControllerTest {
 		when(mockStudentService.updateStudent(1, student)).thenReturn(ResponseEntity.ok(expectedResponse));
 		
 		//When
-		
 		ResponseEntity<Student> result = studentController.updateStudent(1,student);
 		
 		//THEN
-		
 		assertEquals(result.getBody(), expectedResponse);
 
 	}

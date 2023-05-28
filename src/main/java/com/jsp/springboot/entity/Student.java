@@ -8,22 +8,27 @@ import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.Table;
-
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
 
+
+/**
+ * An entity class represents a persistent data object that is mapped to a database table. 
+ * It is used in conjunction with an Object-Relational Mapping (ORM)
+ *   
+ * */
 @Data
 @NoArgsConstructor
 @AllArgsConstructor
 @Getter @Setter
-@Entity //  an entity class represents a persistent data entity used to map to a database table.
-@Table(name="student_info") // table name 
+@Entity
+@Table(name="student_info") 
 public class Student implements Serializable {
 	
-	@Id// used for primary key
+	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY) // automatically generate the id from 1
 	private Integer id;
 	

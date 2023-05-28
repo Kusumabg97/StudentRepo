@@ -35,7 +35,7 @@ public class StudentSpecification {
 		}
  		
 		// total marks 
-		if ( filter.containsKey("totalMarks")) {
+		if ( filter.containsKey("totalmarks")) {
 			predicates.add(criteriaBuilder.equal(root.get("totalmarks"), filter.get("totalmarks")));
 		}
 		  return criteriaBuilder.and(predicates.toArray(new Predicate[0]));
